@@ -1,3 +1,4 @@
+from tqdm import tqdm
 import numpy as np
 import torch
 from torchgeo.datasets import XView2
@@ -42,7 +43,7 @@ def load_data():
 
     train_images, train_masks, test_images, test_masks = [], [], [], []
 
-    for d in train:
+    for d in tqdm(train):
         # Pre- and post-disaster images/masks are coupled
         train_images.append(d["image"][0])
         train_masks.append(d["mask"][0])
@@ -50,7 +51,7 @@ def load_data():
         train_images.append(d["image"][1])
         train_masks.append(d["mask"][1])
 
-    for d in test:
+    for d in tqdm(test):
         # Pre- and post-disaster images/masks are coupled
         test_images.append(d["image"][0])
         test_masks.append(d["mask"][0])
@@ -77,7 +78,7 @@ def load_trainer():
         logging_steps=1,
         eval_accumulation_steps=5,
         remove_unused_columns=False,
-        dataloader_num_workers=16,
+        dataloader_num_workers=8,
         fp16=True,
         ddp_find_unused_parameters=False,
     )
