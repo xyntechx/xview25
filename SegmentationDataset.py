@@ -13,7 +13,7 @@ class SegmentationDataset(Dataset):
     def __getitem__(self, idx):
         image = self.images[idx]
         mask = self.masks[idx]
-        
+
         processed = self.image_processor(
             image,
             mask,
