@@ -175,5 +175,4 @@ cython_debug/
 
 # logs
 wandb
-output
-output_backbone
+output*
